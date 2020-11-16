@@ -44,6 +44,7 @@ metadata:
   namespace: vpx-ingress
   annotations:
   # /* The CS virtual server is derived from the combination of insecure-port/s>
+   ingress.citrix.com/frontend-ip: x.x.x.x
    ingress.citrix.com/insecure-port: "80"
    ingress.citrix.com/secure-port: "443"
    ingress.citrix.com/frontend-httpprofile: '{"dropinvalreqs" : "enabled", "websocket" : "enabled"}'
