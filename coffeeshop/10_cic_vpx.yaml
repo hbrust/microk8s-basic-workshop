@@ -28,7 +28,7 @@ spec:
            value: "DEBUG"
         args:
           - --ingress-classes
-            vpx
+            vpx-coffeshop
           - --feature-node-watch
             true
         imagePullPolicy: IfNotPresent
