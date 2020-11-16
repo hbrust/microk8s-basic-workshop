@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-vpx-monitoring
+  namespace: monitoring
+  annotations:
+   kubernetes.io/ingress.class: "vpx"
+   ingress.citrix.com/frontend-ip: "192.168.250.228"
+   ingress.citrix.com/insecure-termination: "allow"
+   ingress.citrix.com/insecure-port: "8080"
+spec:
+  rules:
+  - host:  grafana.beverages.demo
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+           name: grafana
+           port: 
+             number: 3000
+  - host:  prometheus.beverages.demo
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus-k8s
+            port: 
+              number: 9090
