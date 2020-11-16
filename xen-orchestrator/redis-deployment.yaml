@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: xoa
+  annotations:
+    kompose.cmd: kompose convert -f xoa-compose.yml
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    app: redis
+  name: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f xoa-compose.yml
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        app: redis
+    spec:
+      containers:
+      - args:
+#        - "redis-server --appendonly yes"
+        image: redis:alpine
+        imagePullPolicy: ""
+        name: xo-redis
+        resources: {}
+        volumeMounts:
+        - mountPath: /data
+          name: redis-claim0
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: redis-claim0
+        persistentVolumeClaim:
+          claimName: redis-claim0
+status: {}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: xoa
+  creationTimestamp: null
+  labels:
+    io.kompose.service: redis-claim0
+  name: redis-claim0
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: xoa
+  name: redis
+spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
+  selector:
+    app: redis

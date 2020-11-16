@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: xoa
+  annotations:
+    kompose.cmd: kompose convert -f xoa-compose.yml
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: orchestra
+  name: xoa-service
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8000
+  selector:
+    app: orchestra
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: xoa-ingress
+  namespace: xoa
+  annotations:
+    kubernetes.io/ingress.class: "vpx"
+    ingress.citrix.com/backend-httpprofile: '{"xoa-service": {"dropinvalreqs" : "enabled", "websocket" : "enabled"}}'
+spec:
+  tls:
+  - secretName: demo-wildcard-cert
+  rules:
+  - host: xoa.mk8s.demo
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: xoa-service
+            port:
+              number: 80
