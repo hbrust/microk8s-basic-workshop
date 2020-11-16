@@ -1,0 +1,53 @@
+version: "2"
+services:
+  guacamole-db:
+    image: "mariadb"
+    container_name: guacamole-db
+    restart: always
+    volumes:
+      - "mysql_conf:/etc/mysql/conf.d"
+      - "mysql_db:/var/lib/mysql"
+    network_mode: bridge
+    environment:
+      - "MYSQL_ROOT_PASSWORD=xxxx"
+      - "MYSQL_DATABASE=guacamole"
+      - "MYSQL_USER=guac"
+      - "MYSQL_PASSWORD=xxxx"
+      
+  guacd:
+    image: "guacamole/guacd"
+    container_name: guacd
+    restart: always
+    volumes:
+      - "guacd_data:/data"
+      - "guacd_conf:/conf"
+    expose:
+      - "4822"
+    ports:
+      - "4822:4822"
+    network_mode: bridge
+
+  guacamole:
+    image: "guacamole/guacamole"
+    container_name: guacamole
+    restart: always
+    depends_on: 
+      - guacamole-db
+      - guacd
+    volumes:
+      - "guac-home:/data"
+      - "guac_conf:/conf"
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    network_mode: bridge
+    environment:
+      - "GUACD_HOSTNAME=guacd"
+      - "GUACD_PORT=4822"
+      - "MYSQL_HOSTNAME=guacamole-db"
+      - "MYSQL_PORT=3306"
+      - "MYSQL_DATABASE=guacamole"
+      - "MYSQL_USER=guac"
+      - "MYSQL_PASSWORD=xxxx"
+      - "GUACAMOLE_HOME=/data"
