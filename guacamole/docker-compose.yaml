@@ -9,10 +9,10 @@ services:
       - "mysql_db:/var/lib/mysql"
     network_mode: bridge
     environment:
-      - "MYSQL_ROOT_PASSWORD=xxxx"
+      - "MYSQL_ROOT_PASSWORD=mysecretPW"
       - "MYSQL_DATABASE=guacamole"
       - "MYSQL_USER=guac"
-      - "MYSQL_PASSWORD=xxxx"
+      - "MYSQL_PASSWORD=guacPW"
       
   guacd:
     image: "guacamole/guacd"
@@ -49,5 +49,5 @@ services:
       - "MYSQL_PORT=3306"
       - "MYSQL_DATABASE=guacamole"
       - "MYSQL_USER=guac"
-      - "MYSQL_PASSWORD=xxxx"
+      - "MYSQL_PASSWORD=guacPW"
       - "GUACAMOLE_HOME=/data"
