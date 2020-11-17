@@ -22,7 +22,7 @@
    
    ```
    chmod +x kompose
-   cp kompose /usr/bin/
+   sudo cp kompose /usr/bin/
    ``` 
 
 4. logout and login again
