@@ -13,6 +13,18 @@ metadata:
 type: kubernetes.io/tls
 " > ../coffeeshop/05_hotdrink-secret.yml
 
+# add same cert to another namespace
+echo "
+apiVersion: v1
+data:
+  tls.crt: $(base64 hotdrink.crt | tr -d '\n')
+  tls.key: $(base64 hotdrink.key | tr -d '\n')
+kind: Secret
+metadata:
+  name: hotdrink-secret
+  namespace: tier-2-adc
+type: kubernetes.io/tls
+" >> ../coffeeshop/05_hotdrink-secret.yml
 
 # generate colddrink cert
 openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -keyout colddrink.key -out colddrink.crt  -subj "/C=DE/CN=*.beverages.demo"
