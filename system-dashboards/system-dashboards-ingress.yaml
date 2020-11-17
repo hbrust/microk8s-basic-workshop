@@ -6,7 +6,6 @@ metadata:
   namespace: kube-system
   annotations:
     kubernetes.io/ingress.class: "vpx"
-    ingress.citrix.com/frontend-ip: x.x.x.x
     ingress.citrix.com/secure-backend: '{"kubernetes-dashboard":"true"}'
 spec:
   tls:
@@ -30,7 +29,7 @@ metadata:
   name: grafana-ingress
   namespace: monitoring
   annotations:
-    kubernetes.io/ingress.class: "vm"
+    kubernetes.io/ingress.class: "vpx"
 spec:
   tls:
   - secretName: demo-wildcard-cert
@@ -53,7 +52,7 @@ metadata:
   name: prometheus-ingress
   namespace: monitoring
   annotations:
-    kubernetes.io/ingress.class: "vm"
+    kubernetes.io/ingress.class: "vpx"
 spec:
   tls:
   - secretName: demo-wildcard-cert
