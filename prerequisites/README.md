@@ -43,5 +43,11 @@
    microk8s enable dns dashboard prometheus storage
    ```
 
+6. generate certificates and files
+   ```
+   /bin/bash generate-cert.sh
+   ```
+   This generates the certs and YAML files for `coffeshop` and `VPX-ingress`
+
 ## Start with `coffeeshop`
 tbd 
