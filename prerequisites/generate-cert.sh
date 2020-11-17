@@ -15,6 +15,7 @@ type: kubernetes.io/tls
 
 # add same cert to another namespace
 echo "
+---
 apiVersion: v1
 data:
   tls.crt: $(base64 hotdrink.crt | tr -d '\n')
