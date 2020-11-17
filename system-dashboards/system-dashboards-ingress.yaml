@@ -9,7 +9,7 @@ metadata:
     ingress.citrix.com/secure-backend: '{"kubernetes-dashboard":"true"}'
 spec:
   tls:
-  - secretName: demo-wildcard-cert
+  - secretName: dashboards-secret
   rules:
   - host: dashboard.mk8s-demohost.demo
     http:
@@ -32,7 +32,7 @@ metadata:
     kubernetes.io/ingress.class: "vpx"
 spec:
   tls:
-  - secretName: demo-wildcard-cert
+  - secretName: dashboards-secret
   rules:
   - host: grafana.mk8s-demohost.demo
     http:
@@ -55,7 +55,7 @@ metadata:
     kubernetes.io/ingress.class: "vpx"
 spec:
   tls:
-  - secretName: demo-wildcard-cert
+  - secretName: dashboards-secret
   rules:
   - host: prometheus.mk8s.demo
     http:
