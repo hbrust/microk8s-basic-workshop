@@ -54,3 +54,50 @@ spec:
   rules:
   - host:
 
+---
+
+# add exporter for metrics
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exporter
+  namespace: vpx-ingress
+spec:
+  selector:
+    matchLabels:
+      app: exporter
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: exporter
+    spec:
+      containers:
+        - name: exporter
+          image: "quay.io/citrix/citrix-adc-metrics-exporter:1.3"
+          args:
+            - "--target-nsip=x.x.x.x"
+            - "--port=8888"
+          env:
+          - name: "NS_USER"
+            value: "xx"
+          - name: "NS_PASSWORD"
+            value: "xx"
+          imagePullPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: exporter-vpx
+  namespace: vpx-ingress
+  labels:
+    app: exporter
+    service-type: citrix-adc-monitor
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8888
+    targetPort: 8888
+    name: exporter-port
+
