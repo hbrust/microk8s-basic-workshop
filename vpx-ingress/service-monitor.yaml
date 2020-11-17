@@ -18,3 +18,24 @@ spec:
     - default
     - tier-2-adc
     - vpx-ingress
+
+---
+
+# extend prometheus ClusterRole for metric exporter
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheus-k8s
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes/metrics
+  - namespaces
+  - services
+  - endpoints
+  - pods
+  verbs: ["*"]
+- nonResourceURLs:
+  - /metrics
+  verbs:  ["*"]
