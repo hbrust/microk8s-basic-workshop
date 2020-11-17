@@ -4,11 +4,11 @@
 
    - for `containerd` make entry 
      ```
-     HTTPS_PROXY=https://<yourProxyIP>:<ProxyPort>
+     HTTPS_PROXY=http://<yourProxyIP>:<ProxyPort>
      NO_PROXY=10.1.0.0/16,10.152.183.0/24
      ```
      in `/var/snap/microk8s/current/args/containerd-env`. After this step restart microk8s with `sudo microk8s stop; sudo microk8s start`
-   - for `curl` (necessary for microk8s modules) make entry `HTTPS_PROXY=https://<yourProxyIP>:<ProxyPort>` in `/etc/environment`
+   - for `curl` (necessary for microk8s modules) make entry `HTTPS_PROXY=http://<yourProxyIP>:<ProxyPort>` in `/etc/environment`
    - for `snapd` make entry `Environment="HTTPS_PROXY=http://<yourProxyIP>:<ProxyPort>"`in `/etc/systemd/system/snapd.service.d/snap_proxy.conf` 
 
 1. Add your user to `microk8s` group to avoid `sudo`
