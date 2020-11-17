@@ -2,7 +2,7 @@
 
 0. [Optional] if you use a proxy to access internet, you have to put it in different files
 
-   - for `containerd` make entry `HTTPS_PROXY=https://<yourProxyIP>:<ProxyPort>` in `/var/snap/microk8s/current/args/containerd-env`
+   - for `containerd` make entry `HTTPS_PROXY=https://<yourProxyIP>:<ProxyPort>` in `/var/snap/microk8s/current/args/containerd-env`. After this step restart microk8s with `sudo microk8s stop; microk8s start`
    - for `curl` (necessary for microk8s modules) make entry `HTTPS_PROXY=https://<yourProxyIP>:<ProxyPort>` in `/etc/environment`
    - for `snapd` make entry `Environment="HTTPS_PROXY=http://<yourProxyIP>:<ProxyPort>"`in `/etc/systemd/system/snapd.service.d/snap_proxy.conf` 
 
