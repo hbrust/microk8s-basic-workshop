@@ -24,7 +24,7 @@ data:
 kind: Secret
 metadata:
   name: colddrink-secret
-  namespace: team-coldrink
+  namespace: team-colddrink
 type: kubernetes.io/tls
 " > ../coffeeshop/07_colddrink-secret.yml
 
