@@ -491,3 +491,4 @@ spec:
     - monitoring
     - default
     - tier-2-adc
+    - vpx-ingress

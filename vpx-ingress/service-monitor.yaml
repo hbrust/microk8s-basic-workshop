@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: citrix-adc-servicemonitor
+  namespace: monitoring
+  labels:
+    servicemonitor: citrix-adc
+spec:
+  endpoints:
+  - interval: 30s
+    port: exporter-port
+  selector:
+    matchLabels:
+      service-type: citrix-adc-monitor
+  namespaceSelector:
+    matchNames:
+    - monitoring
+    - default
+    - tier-2-adc
+    - vpx-ingress
