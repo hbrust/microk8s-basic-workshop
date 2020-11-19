@@ -99,9 +99,10 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   If you do not have a file named `05_hotdrink-secret.yaml`, please check if you executed step 6 from [prerequisites](../prerequisites)
 
   *Optional*
-  After deployment of application and certificate you can look at the resulting configuration of CPX. To do so, get the POD name of CPX for hotdrinks application (`kubectl get pod -n tier-2-adc`).
+  
+  *After deployment of application and certificate you can look at the resulting configuration of CPX. To do so, get the POD name of CPX for hotdrinks application (`kubectl get pod -n tier-2-adc`).*
 
-  After knowing the POD name you can login into the shell of your CPX and execute any ADC command by using `cli_script.sh`
+  *After knowing the POD name you can login into the shell of your CPX and execute any ADC command by using `cli_script.sh`*
   ```
   kubectl exec -ti cpx-ingress-hotdrinks-<xxxxx> -n tier-2-adc -c cpx-ingress-hotdrinks -- /bin/bash
   cli_sript.sh "show run"
@@ -126,9 +127,10 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   If you do not have a file named `07_colddrink-secret.yaml`, please check if you executed step 6 from [prerequisites](../prerequisites)
 
   *Optional*
-  After deployment of application and certificate you can look at the resulting configuration of CPX. To do so, get the POD name of CPX for colddrinks application (`kubectl get pod -n tier-2-adc`).
+  
+  *After deployment of application and certificate you can look at the resulting configuration of CPX. To do so, get the POD name of CPX for colddrinks application (`kubectl get pod -n tier-2-adc`).*
 
-  After knowing the POD name you can login into the shell of your CPX and execute any ADC command by using `cli_script.sh`
+  *After knowing the POD name you can login into the shell of your CPX and execute any ADC command by using `cli_script.sh`*
   ```
   kubectl exec -ti cpx-ingress-colddrinks-<xxxxx> -n tier-2-adc -c cpx-ingress-colddrinks -- /bin/bash
 
@@ -146,9 +148,10 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   ```
 
   *Optional*
-  After Deployment you can look at the resulting configuration of CPX. To do so, get the POD name of CPX for guestbook application (`kubectl get pod -n tier-2-adc`).
+  
+  *After Deployment you can look at the resulting configuration of CPX. To do so, get the POD name of CPX for guestbook application (`kubectl get pod -n tier-2-adc`).*
 
-  After knowing the POD name you can login into the shell of your CPX and execute any ADC command by using `cli_script.sh`
+  *After knowing the POD name you can login into the shell of your CPX and execute any ADC command by using `cli_script.sh`*
   ```
   kubectl exec -ti cpx-ingress-guestbook-<xxxxx> -n tier-2-adc -c cpx-ingress-guestbook -- /bin/bash
   cli_sript.sh "show run"
@@ -179,7 +182,7 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   * ServiceGroups
 
   *Troubleshooting-Tips:*
-  * *if all of your ServiceGroups are down, please check if you executed Step 7 of [Prerequisites](../prerequisites). Normally CIC would push the routes to the POD network to VPX, but for some reasons this do not work in a MicroK8s environment.*
+  * *if all of your ServiceGroups are down, please check if you executed Step 7 of [Prerequisites](../prerequisites). Normally CIC would push the routes to the POD network to VPX, but for some reasons this does not work in a MicroK8s environment.*
   * *if only some of your ServiceGroups are down, delete and redeploy the corresponding YAML file. Or check with `kubectl exec` command what might have failed at CPX configuration*
 
   Configure your `hosts` file or your dns to point
