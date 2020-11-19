@@ -9,11 +9,16 @@ In the Kubernetes cluster, pod gets deployed across worker nodes. Below screensh
 ![hotdrinknamespacek8s](images/hotdrinknamespacek8s.png)
 Here are the detailed demo steps in cloud native infrastructure which offers the tier 1 and tier 2 seamless integration along with automation of proxy configuration using yaml files.
 
+
 ## Steps to do before starting deploying demo
 ### Requirements
 Finish Requirements and [Prerequisites](../prerequisites)
 
-### make yourself comfortable with Kubernetes concepts and Kubernetes CLI
+
+### Kubernetes
+
+Make yourself comfortable with Kubernetes concepts and Kubernetes CLI.
+
   #### Concepts
   You can find multiple introductions into Kubernetes concepts on the internet.
 
@@ -23,7 +28,7 @@ Finish Requirements and [Prerequisites](../prerequisites)
 
   #### Kubernetes Cli
 
-  If you finished the [Prerequisites](../prerequisites) your MicroK8s CLI has an alias for `microk8s.kubectl` called `kubectl` and feels like a vanilla Kubernetes CLI.
+  If you finished the [Prerequisites](../prerequisites) your MicroK8s CLI has an alias for `microk8s.kubectl` called `kubectl` and it feels like using a vanilla Kubernetes CLI.
 
  * check your nodes: `kubectl get nodes`
  * get existing namespaces: `kubectl get ns`
@@ -52,10 +57,12 @@ You can check your namespaces with `kubectl get ns` and should have at least the
    tier-2-adc
    ```
 
+
 2.	now we have to create the [RBAC role, rolebinding and serviceaccount](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) we need for the Citrix Ingress Controller in the next steps
   ```
   kubectl apply -f 02_rbac.yaml
   ```
+
 
 3.	Deploy the CPX for hotdrink, colddrink and guestbook microservices using following commands,
   ```
@@ -74,6 +81,7 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   - there are additional services for the exporter
   - at the end there is a ServiceMonitor to monitor the exporter, which all will have the `service-type: citrix-adc-monitor`
 
+
 4.	Deploy the the hotdrinks application, existing of
   * Deployment with multiple pods
   * services
@@ -82,6 +90,7 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   ```
   kubectl apply -f 04_team-hotdrink.yaml
   ```
+
 
 5.  Deploy the SSL certificate for hotdrinks ingress
   ```
@@ -98,6 +107,7 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   cli_sript.sh "show run"
   ````
 
+
 6.	Deploy the the colddrink application, existing of
   * Deployment with multiple pods
   * services
@@ -107,6 +117,7 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   ```
   kubectl apply -f 06_team-colddrink.yaml
   ```
+
 
 7.  Deploy the SSL certificate for colddrinks ingress
   ```
@@ -120,8 +131,10 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   After knowing the POD name you can login into the shell of your CPX and execute any ADC command by using `cli_script.sh`
   ```
   kubectl exec -ti cpx-ingress-colddrinks-<xxxxx> -n tier-2-adc -c cpx-ingress-colddrinks -- /bin/bash
+
   cli_sript.sh "show run"
   ```
+
 
 8.	Deploy the the guestbook application, existing of
   * Deployment with multiple pods
@@ -141,6 +154,7 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   cli_sript.sh "show run"
   ```
 
+
 9. Deploy the Citrix Ingress Controller for Tier-1 VPX
 
   **BEFORE DEPLOYING:**
@@ -150,7 +164,9 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   kubectl apply -f 09_cic_vpx.yaml
   ```
 
+
 10. deploy ingress definition for Tier-1 VPX
+
   **BEFORE DEPLOYING:**
 
   **change IP address annotation `ingress.citrix.com/frontend-ip: "x.x.x.x"` in `10_ingress_vpx.yaml` to an IP address you want to use as frontend VIP on your VPX**
@@ -178,6 +194,8 @@ You can check your namespaces with `kubectl get ns` and should have at least the
 
 
 ---
+
+## OLD STUFF to review 
 
 14.	Deploy the CNCF monitoring tools such as Prometheus and Grafana to collect ADC proxies’ stats. Using the ingress yaml VPX config will be pushed automatically.
 ``

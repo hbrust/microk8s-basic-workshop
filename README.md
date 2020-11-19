@@ -30,7 +30,9 @@ These guide requires you to have installed and accessible:
 
 1. [Prerequisites](prerequisites)
 
-  start with [Prerequisites](prerequisites)
+start with [Prerequisites](prerequisites)
+
 
 2. first demo to build is Coffeeshop-Demo
+
    change current directory to `coffeeshop` and [go to Demo Script](coffeeshop)
