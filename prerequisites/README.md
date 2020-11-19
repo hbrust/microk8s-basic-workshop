@@ -2,14 +2,14 @@
 
 0. [Optional] if you use a proxy to access internet, you have to put it in different files
 
-   - for `containerd` make entry 
+   - for `containerd` make entry
      ```
      HTTPS_PROXY=http://<yourProxyIP>:<ProxyPort>
      NO_PROXY=10.1.0.0/16,10.152.183.0/24
      ```
      in `/var/snap/microk8s/current/args/containerd-env`. After this step restart microk8s with `sudo microk8s stop; sudo microk8s start`
    - for `curl` (necessary for microk8s modules) make entry `HTTPS_PROXY=http://<yourProxyIP>:<ProxyPort>` in `/etc/environment`
-   - for `snapd` make entry `Environment="HTTPS_PROXY=http://<yourProxyIP>:<ProxyPort>"`in `/etc/systemd/system/snapd.service.d/snap_proxy.conf` 
+   - for `snapd` make entry `Environment="HTTPS_PROXY=http://<yourProxyIP>:<ProxyPort>"`in `/etc/systemd/system/snapd.service.d/snap_proxy.conf`
 
 1. Add your user to `microk8s` group to avoid `sudo`
 
@@ -18,7 +18,7 @@
    sudo chown -f -R <user> ~/.kube
    ```
 
-2. Add `.bash_aliases` to your home directory 
+2. Add `.bash_aliases` to your home directory
 
    (copy existing or write your own)
 
@@ -30,11 +30,11 @@
    ```
 
 3. make `kompose` executable and copy to `/usr/bin/`
-   
+
    ```
    chmod +x kompose
    sudo cp kompose /usr/bin/
-   ``` 
+   ```
 
 4. logout and login again
 
@@ -49,5 +49,10 @@
    ```
    This generates the certs and YAML files for `coffeshop` and `VPX-ingress`
 
+7. add Route to VPX
+   add Route for Network `10.1.0.0/16` with gateway `<Ubuntu20.04-IPaddress>` to Tier-1 adc
+
+   *Normally CIC would push the routes to the POD network to VPX, but for some reasons this do not work in a MicroK8s environment.*
+
 ## Start with `coffeeshop`
-tbd 
+tbd
