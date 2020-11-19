@@ -72,9 +72,9 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   - multiple configurations are divided by `---`
   - in each configuration the target namespace is mentioned in `metadata:` section
   - each CPX deployment consists of:
-      -- PX container
-      -- CIC container as sidecar
-      -- exporter as sidecar
+    - PX container
+    - CIC container as sidecar
+    - exporter as sidecar
   - because of security enhancement the credentials of the CPX will not be provided anymore. All containers in the pod will discover the credentials through the mounted `shared_data` volume.
   - for each CIC an unique ingress class is defined in the arguments section with `--ingress-class`
   - for each CPX there is an service defined to propagate the "VIP" to the cluster
