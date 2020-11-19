@@ -12,7 +12,7 @@ Here are the detailed demo steps in cloud native infrastructure which offers the
 
 ## Steps to do before starting deploying demo
 ### Requirements
-Finish Requirements and [Prerequisites](../prerequisites)
+Finish [Requirements](../README.md#Requirements) and [Prerequisites](../prerequisites)
 
 
 ### Kubernetes
@@ -195,7 +195,7 @@ You can check your namespaces with `kubectl get ns` and should have at least the
 
 ---
 
-## OLD STUFF to review 
+## OLD STUFF to review
 
 14.	Deploy the CNCF monitoring tools such as Prometheus and Grafana to collect ADC proxies’ stats. Using the ingress yaml VPX config will be pushed automatically.
 ``
