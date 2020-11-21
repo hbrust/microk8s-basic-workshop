@@ -196,35 +196,45 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   Now you should be able to access the three domains and applications.
 
 
+11. deploy monitoring ingress
+
+  *MicroK8s provides prometheus and grafana modules. By enabling K8s prometheus module you activated both applications.*
+
+  **BEFORE DEPLOYING:**
+
+  **change IP address annotation `ingress.citrix.com/frontend-ip: "x.x.x.x"` in `11_ingress_monitoring.yaml` to an IP address you want to use as frontend VIP for monitoring tools on your VPX**
+  
+   Be aware in this ingress definition the ingress port is `8080` for demo porpuses.
+
+   ```
+   kubectl apply -f 11_ingress_monitoring.yaml
+   ```
+   
+   Configure your `hosts` file or your dns to point
+   ```
+   hotdrinks.beverages.demo
+   colddrinks.beverages.demo
+   guestbook.beverages.demo
+   ```
+   to your VPX frontend VIP address.
+
+   Now you should be able to access the these domains and applications by using port `:8080`
+   
+   * Prometheus
+  
+   Connect to Prometheus webinterface [http://prometheus.beverages.demo:8080](http://prometheus.beverages.demo:8080) and check status of CPX exporters. They should be in status `Up`.
+
+**TBD: Screenshot of Prometheus**
+
+  Now you can explore metrics of Exporter in Prometheus, all metric names of CPX are starting with ˋCitrixADCˋ
+
+  * Grafana
+  
+  Login to Grafana webinterface [http://grafana.beverages.demo:8080](http://grafana.beverages.demo:8080) with default credentials `admin/admin` and change password at first login.
+
+Add a new dashboard by using menu item `+` sign and select `Import`. Copy the content of [adc_stats.json], paste it into the form and choose `load`. Now you you have a Dashboard showing metrics of your CPXes,
+
 ---
-
-## OLD STUFF to review
-
-14.	Deploy the CNCF monitoring tools such as Prometheus and Grafana to collect ADC proxies’ stats. Using the ingress yaml VPX config will be pushed automatically.
-``
-cmd: kubectl create -f /root/yamls/monitoring.yaml -n monitoring
-cmd: kubectl create -f /root/yamls/ingress_vpx_monitoring.yaml -n monitoring
-``
-Note:   Go to ``ingress_vpx_monitoring.yaml`` and change the frontend-ip address from ``ingress.citrix.com/frontend-ip: "x.x.x.x"`` annotation to one of the free IP which will act as content switching vserver Prometheus and Grafana portal.
-e.g. ``ingress.citrix.com/frontend-ip: "10.105.158.161"``
-
-15.	Add the DNS entries in your local machine host files for accessing monitoring portals though internet.
-Path for host file: ``C:\Windows\System32\drivers\etc\hosts``
-Add below entries in hosts file and save the file,
-
-<frontend-ip from ingress_vpx_monitoring.yaml> grafana.beverages.com
-<frontend-ip from ingress_vpx_monitoring.yaml> prometheus.beverages.com
-
-16.	Login to ``http://grafana.beverages.com`` and do the following one time setup
-Login to portal using admin/admin credentials.
-Click on Add data source and select the Prometheus data source. Do the settings as shown below and click on save & test button.
-
- ![grafana_webpage](https://user-images.githubusercontent.com/42699135/50677392-987efb00-101f-11e9-993a-cb1b65dd96cf.png)
-
-From the left panel, select import option and upload the json file provided in folder yamlFiles ``/example-cpx-vpx-for-kubernetes-2-tier-microservices/config/grafana_config.json``
-Now you can see the Grafana dashboard with basic ADC stats listed.
-
- ![grafana_stats](https://user-images.githubusercontent.com/42699135/50677391-97e66480-101f-11e9-8d42-87c4a2504a96.png)
 
 Citrix ADC solution supports the load balancing of various protocol layer traffic such as SSL,  SSL_TCP, HTTP, TCP. Below screenshot has listed different flavours of traffic supported by this demo.
 ![traffic_flow](https://user-images.githubusercontent.com/42699135/50677397-99179180-101f-11e9-8a40-26ba7d0d54e0.png)
