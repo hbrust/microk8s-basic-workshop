@@ -99,7 +99,7 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   If you do not have a file named `05_hotdrink-secret.yaml`, please check if you executed step 6 from [prerequisites](../prerequisites)
 
   *Optional*
-  
+
   *After deployment of application and certificate you can look at the resulting configuration of CPX. To do so, get the POD name of CPX for hotdrinks application (`kubectl get pod -n tier-2-adc`).*
 
   *After knowing the POD name you can login into the shell of your CPX and execute any ADC command by using `cli_script.sh`*
@@ -127,7 +127,7 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   If you do not have a file named `07_colddrink-secret.yaml`, please check if you executed step 6 from [prerequisites](../prerequisites)
 
   *Optional*
-  
+
   *After deployment of application and certificate you can look at the resulting configuration of CPX. To do so, get the POD name of CPX for colddrinks application (`kubectl get pod -n tier-2-adc`).*
 
   *After knowing the POD name you can login into the shell of your CPX and execute any ADC command by using `cli_script.sh`*
@@ -148,7 +148,7 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   ```
 
   *Optional*
-  
+
   *After Deployment you can look at the resulting configuration of CPX. To do so, get the POD name of CPX for guestbook application (`kubectl get pod -n tier-2-adc`).*
 
   *After knowing the POD name you can login into the shell of your CPX and execute any ADC command by using `cli_script.sh`*
@@ -203,13 +203,13 @@ You can check your namespaces with `kubectl get ns` and should have at least the
   **BEFORE DEPLOYING:**
 
   **change IP address annotation `ingress.citrix.com/frontend-ip: "x.x.x.x"` in `11_ingress_monitoring.yaml` to an IP address you want to use as frontend VIP for monitoring tools on your VPX**
-  
+
    Be aware in this ingress definition the ingress port is `8080` for demo porpuses.
 
    ```
    kubectl apply -f 11_ingress_monitoring.yaml
    ```
-   
+
    Configure your `hosts` file or your dns to point
    ```
    hotdrinks.beverages.demo
@@ -219,20 +219,22 @@ You can check your namespaces with `kubectl get ns` and should have at least the
    to your VPX frontend VIP address.
 
    Now you should be able to access the these domains and applications by using port `:8080`
-   
-   * Prometheus
-  
-   Connect to Prometheus webinterface [http://prometheus.beverages.demo:8080](http://prometheus.beverages.demo:8080) and check status of CPX exporters. They should be in status `Up`.
 
-**TBD: Screenshot of Prometheus**
+   * Prometheus
+
+   Connect to Prometheus webinterface [http://prometheus.beverages.demo:8080](http://prometheus.beverages.demo:8080) and check status of CPX exporters (status/targets). They should be in status `Up`.
+
+  ![../images/prometheus.beverages.demo.png]
 
   Now you can explore metrics of Exporter in Prometheus, all metric names of CPX are starting with ˋCitrixADCˋ
 
   * Grafana
-  
+
   Login to Grafana webinterface [http://grafana.beverages.demo:8080](http://grafana.beverages.demo:8080) with default credentials `admin/admin` and change password at first login.
 
-Add a new dashboard by using menu item `+` sign and select `Import`. Copy the content of [adc_stats.json], paste it into the form and choose `load`. Now you you have a Dashboard showing metrics of your CPXes,
+  ![../images/grafana.beverages.demo.png]
+
+Add a new dashboard by using menu item `+` sign and select `Import`. Copy the content of [grafana_sample_stats.json](https://raw.githubusercontent.com/hbrust/microk8s-basic-workshop/main/coffeeshop/grafana_sample_stats.json), paste it into the form and choose `load`. Now you you have a Dashboard showing metrics of your CPXes,
 
 ---
 
