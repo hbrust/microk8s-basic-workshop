@@ -224,7 +224,7 @@ You can check your namespaces with `kubectl get ns` and should have at least the
 
    Connect to Prometheus webinterface [http://prometheus.beverages.demo:8080](http://prometheus.beverages.demo:8080) and check status of CPX exporters (status/targets). They should be in status `Up`.
 
-  ![../images/prometheus.beverages.demo.png]
+  ![../images/prometheus.beverages.demo.png](Prometheus)
 
   Now you can explore metrics of Exporter in Prometheus, all metric names of CPX are starting with ˋCitrixADCˋ
 
@@ -232,7 +232,7 @@ You can check your namespaces with `kubectl get ns` and should have at least the
 
   Login to Grafana webinterface [http://grafana.beverages.demo:8080](http://grafana.beverages.demo:8080) with default credentials `admin/admin` and change password at first login.
 
-  ![../images/grafana.beverages.demo.png]
+  ![../images/grafana.beverages.demo.png](Grafana)
 
 Add a new dashboard by using menu item `+` sign and select `Import`. Copy the content of [grafana_sample_stats.json](https://raw.githubusercontent.com/hbrust/microk8s-basic-workshop/main/coffeeshop/grafana_sample_stats.json), paste it into the form and choose `load`. Now you you have a Dashboard showing metrics of your CPXes,
 
