@@ -1,3 +1,3 @@
 ## Demo Kompose
 
-*TBD*
+*coming soon*

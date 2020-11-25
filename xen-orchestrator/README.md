@@ -1,5 +1,5 @@
 # Xen-Orchestrator
 
-*HTTP/2 demo*
+*websockets demo*
 
-*TBD*
+*coming soon*
