@@ -6,7 +6,7 @@ There are some important notes:
 - to provide HTTP/2 or websockets at your fronebd CS-vserver you have to use HTTP profiles
 - to provide SSL or TCP configurations to your frontend CS-Server you have to use SSL- or TCP-Profiles
 - profile configuration for Citrix ADCs will be provided through annotations in the ingress definition
-- you *can not* provide frontend *and* backend defintion in one single defintion! This means you need
+- you **can not** provide frontend **and** backend defintion in one single defintion! This means you need
    - one definition for all your frontend stuff (IP adress, ports, profiles)
    - and one separate definition for your backend stuff (URL, backend profiles, services)
 
