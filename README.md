@@ -28,12 +28,17 @@ These guide requires you to have installed and accessible:
 
 ## Agenda / Steps
 
-1. [Prerequisites](prerequisites)
+1. Clone this repository
+  ```
+  git clone https://github.com/hbrust/microk8s-basic-workshop.git
+  ```
+
+2. [Prerequisites](prerequisites)
 
   start with [Prerequisites](prerequisites)
 
 
-2. first demo to build is Coffeeshop-Demo
+3. first demo to build is Coffeeshop-Demo
 
    change current directory to `coffeeshop` and [go to Demo Script](coffeeshop)
 
