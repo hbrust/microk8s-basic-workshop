@@ -59,4 +59,4 @@ These guide requires you to have installed and accessible:
 
 7. [Guacamole](guacamole)
 
-   this demo should show, how you can convert docker-compose files into Kubernetes definitions by using `[kompose](https://github.com/kubernetes/kompose)` and how to write an ingress definition    
+   this demo should show, how you can convert docker-compose files into Kubernetes definitions by using [kompose](https://github.com/kubernetes/kompose) and how to write an ingress definition    
